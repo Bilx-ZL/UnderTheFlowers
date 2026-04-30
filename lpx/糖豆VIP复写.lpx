@@ -6,7 +6,7 @@
 #!tag = 去广告, 会员
 
 [rewrite]
-^https?:\/\/aa\.tangdou\.com:12308\/api\.php response-body response-body-replace-regex "\"vip_type\":\d" "\"vip_type\":1"
+^https?:\/\/aa\.tangdou\.com:12308\/api\.php response-body-json-replace data.vip_type 1
 
 [mitm]
 hostname = aa.tangdou.com
