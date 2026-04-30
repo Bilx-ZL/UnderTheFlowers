@@ -1,12 +1,11 @@
 #!name = 糖豆视频 VIP 复写
 #!desc = 
-#!author = Gemini
+#!author = noob Gemini
 #!icon = 
 #!system = iOS, iPadOS
 #!tag = 去广告, 会员
 
 [rewrite]
-# 严格只匹配 "vip_type":数字 并修改为 "vip_type":1
 ^https?:\/\/aa\.tangdou\.com:12308\/api\.php response-body "\"vip_type\":\d" "\"vip_type\":1"
 
 [mitm]
