@@ -8,7 +8,7 @@
 [rewrite]
 #^https:\/\/aa\.tangdou\.com:12308\/api\.php\?mod=user&ac=get_my_conf response-body-replace-regex "vip_type":\d "vip_type":1
 ^https:\/\/aa\.tangdou\.com:12308\/api\.php\?mod=user&ac=get_my_conf response-body-json-replace datas.user_info.vip_type 1
-^https:\/\/aa\.tangdou\.com:12308\/api\.php\?mod=vip response-body-json-replace datas.vip_type 1
+^https:\/\/aa\.tangdou\.com:12308\/api\.php\?mod=vip&ac=vip_info response-body-json-replace datas.vip_type 1
 ^https:\/\/aa\.tangdou\.com:12308\/api\.php\?mod=vip_user&ac=report reject-dict
 
 [mitm]
