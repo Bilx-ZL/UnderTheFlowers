@@ -1,0 +1,55 @@
+#!name = 【补丁】网易云音乐去开屏广告
+#!desc = 【补丁】【测试版】用于拦截网易云音乐去广告插件[版本日期20260601 17:11:35]漏掉的开屏广告（运营推广），你可能需要重装App；\n如果你没有遇到广告，请勿安装；\n如果原插件已经更新拦截，请及时删除；\n如果遇到功能异常，请及时删除\n详细内容：拦截网易云音乐所有广告下发配置API，去除开屏广告、信息流广告等。基于抓包分析，拦截 /eapi/ad/* 全系列广告接口。
+#!author = Qingulili VSCode Copilot Qwen3.7-Max
+#!system = iOS,iPadOS
+#!system_version = 26
+#!loon_version = 3.5.0(975)
+#!tag = 去广告,网易云音乐
+#!type = normal
+#!date = 2026-8-2 21:16:00
+
+[Rewrite]
+# =============================================
+# 网易云音乐 - 广告API拦截 (方案A: 拦截全部广告下发配置)
+# 基于抓包分析 interface3.music.163.com 的 /eapi/ad/* 全系列接口
+# =============================================
+
+# --- 开屏广告核心API (最关键) ---
+# /eapi/ad/loading/current → 获取当前开屏广告配置
+# /eapi/ad/loading/get     → 获取开屏广告资源列表
+^https?://interface3\.music\.163\.com/eapi/ad/loading/current reject-200
+^https?://interface3\.music\.163\.com/eapi/ad/loading/get reject-200
+
+# --- 广告列表与配置API ---
+# /eapi/ad/get        → 获取广告列表（含信息流广告）
+# /eapi/ad/config/get → 获取广告配置
+# /eapi/ad/config     → 广告配置更新
+# /eapi/ad/iyunIds    → 获取广告ID列表
+^https?://interface3\.music\.163\.com/eapi/ad/get reject-200
+^https?://interface3\.music\.163\.com/eapi/ad/config/get reject-200
+^https?://interface3\.music\.163\.com/eapi/ad/config reject-200
+^https?://interface3\.music\.163\.com/eapi/ad/iyunIds reject-200
+
+# --- 广告素材与通用配置API ---
+# /eapi/ad/materialconfig → 广告素材配置（控制展示哪些广告图片）
+# /eapi/ad/commonconfig   → 通用广告配置
+^https?://interface3\.music\.163\.com/eapi/ad/materialconfig reject-200
+^https?://interface3\.music\.163\.com/eapi/ad/commonconfig reject-200
+
+# --- 广告追踪与归因API ---
+# /eapi/ad/sniffing              → 广告嗅探/展示上报
+# /eapi/ocpc/ad/apple/adservices → Apple广告归因
+^https?://interface3\.music\.163\.com/eapi/ad/sniffing reject-200
+^https?://interface3\.music\.163\.com/eapi/ocpc/ad/ reject-200
+
+# --- 广告图片CDN拦截 (按文件名关键词匹配) ---
+# 已确认的广告图片文件名包含: ad_creative, adcreative, boot+数字, arianaboot, gyws*boot
+# 暂时注释：CDN域名MitM功耗较高，API拦截已足够阻止广告下发
+#^https?://p[1-6]\.music\.126\.net/obj/[^/]+/[^/]+/[^/]+/[^/]+/ad_creative reject-img
+#^https?://p[1-6]\.music\.126\.net/obj/[^/]+/[^/]+/[^/]+/[^/]+/adcreative reject-img
+#^https?://p[1-6]\.music\.126\.net/obj/[^/]+/[^/]+/[^/]+/[^/]+/[^/]*boot\d+ reject-img
+#^https?://p[1-6]\.music\.126\.net/obj/[^/]+/[^/]+/[^/]+/[^/]+/arianaboot reject-img
+#^https?://p[1-6]\.music\.126\.net/obj/[^/]+/[^/]+/[^/]+/[^/]+/gyws.*boot reject-img
+
+[Mitm]
+hostname = interface3.music.163.com
