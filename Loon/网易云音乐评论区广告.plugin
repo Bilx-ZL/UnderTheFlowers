@@ -18,4 +18,4 @@
 ^https?:\/\/interface\d?\.music\.163\.com\/xeapi\/comment\/feed\/inserted\/resources\/combined mock-response-body data-type=text data="" status-code=200
 
 [Mitm]
-# hostname = interface*.music.163.com
+hostname = interface3.music.163.com, interface6.music.163.com
