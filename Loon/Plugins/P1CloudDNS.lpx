@@ -1,0 +1,31 @@
+#!name = P1Cloud 机场 DNS 解析与分流
+#!desc = 适用于P1Cloud机场的节点域名解析模块，将使用机场DNS服务器解析节点域名\n请在底下的Proxy项目里指定访问P1官网和拉取订阅使用的策略\n选择Direct来直连访问机场官网和拉去订阅，或者指定一个代理节点或策略组访问官网和拉取订阅。
+#!author = Qingulili P1Cloud[https://t.me/MclarenP1cloud]
+#!homepage = 
+#!icon = 
+#!system = iOS,iPadOS,tvOS,macOS
+#!system_version = 26
+#!loon_version = 3.5.0(975)
+#!tag = DNS,分流,机场
+#!type = normal
+#!date = 2026-8-20
+
+[Rule]
+# P1Cloud 机场节点域名，统一走 PROXY（安装时由用户选择策略组）
+DOMAIN-SUFFIX,p1dingy.top,PROXY
+DOMAIN,p1linshi.top,PROXY
+DOMAIN,bieshawo321.top,PROXY
+DOMAIN,gwcdn.p1linshi.top,PROXY
+DOMAIN,p1.hzhzzh.com,PROXY
+DOMAIN,www.p1go.top,PROXY
+DOMAIN,bbb.p1cloudapi.top,PROXY
+DOMAIN,ponecloud.icu,PROXY
+
+[Host]
+# 将 DoH 服务器域名固定到指定 IP，确保 DNS 查询本身可解析
+pdns-5147.pdns-5147.com = 43.248.9.217
+
+# 163 域名（含所有子域名）走指定 DoH DNS 解析
+*.163.com = server:https://pdns-5147.pdns-5147.com/q-query
+
+
