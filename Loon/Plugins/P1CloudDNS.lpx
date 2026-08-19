@@ -1,4 +1,4 @@
-#!name = P1Cloud 机场 DNS 解析与分流
+#!name = P1Cloud机场DNS模块
 #!desc = 适用于P1Cloud机场的节点域名解析模块，将使用机场DNS服务器解析节点域名\n请在底下的Proxy项目里指定访问P1官网和拉取订阅使用的策略\n选择Direct来直连访问机场官网和拉去订阅，或者指定一个代理节点或策略组访问官网和拉取订阅。
 #!author = Qingulili P1Cloud[https://t.me/MclarenP1cloud]
 #!homepage = 
