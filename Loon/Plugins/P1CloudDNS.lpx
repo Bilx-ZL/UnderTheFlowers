@@ -27,5 +27,5 @@ pdns-5147.pdns-5147.com = 43.248.9.217
 
 # 163 域名（含所有子域名）走指定 DoH DNS 解析
 *.163.com = server:https://pdns-5147.pdns-5147.com/q-query
-
+*.163.com = server:https://110.42.61.167:3000/q-query
 
