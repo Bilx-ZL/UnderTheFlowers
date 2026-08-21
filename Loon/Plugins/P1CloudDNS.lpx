@@ -23,7 +23,7 @@ DOMAIN,ponecloud.icu,PROXY
 
 # 机场DNS走直连
 DOMAIN,pdns-5147.pdns-5147.com,DIRECT
-IP-CIDR,110.42.61.167/32,DIRECT 
+IP-CIDR,110.42.61.167/32,DIRECT,no-resolve
 
 [Host]
 # 将 DoH 服务器域名固定到指定 IP，确保 DNS 查询本身可解析
