@@ -20,6 +20,7 @@ DOMAIN,p1.hzhzzh.com,PROXY
 DOMAIN,www.p1go.top,PROXY
 DOMAIN,bbb.p1cloudapi.top,PROXY
 DOMAIN,ponecloud.icu,PROXY
+DOMAIN,go.ponerocket.com,PROXY
 
 # 机场DNS走直连
 DOMAIN,pdns-5147.pdns-5147.com,DIRECT
